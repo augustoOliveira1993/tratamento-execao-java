@@ -51,15 +51,23 @@ public class Reservation {
 		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 	}
 	
-	public void updateDates(Date checkin, Date checkout) {
+	public String updateDates(Date checkin, Date checkout) {
+		Date now = new Date();
+		if(checkin.before(now) || checkout.before(now)) {
+			return "Reservation date for update must be future dates.";
+		}
+		if(!checkout.after(checkin)) {
+			return "Check-out date must be after check-in.";
+		}
 		this.checkin = checkin;
 		this.checkout = checkout;
+		return null;
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Reservation: Room ");
+		sb.append("Room: ");
 		sb.append(this.roomNumber);
 		sb.append(", check-in: ");
 		sb.append(sdf.format(checkin));

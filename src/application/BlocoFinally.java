@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import entities.Pessoa;
+import model.entities.Pessoa;
 
 public class BlocoFinally {
 
